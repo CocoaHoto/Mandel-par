@@ -108,18 +108,18 @@ int main()
     ER2=EscapeRadius*EscapeRadius;
 
   /* compute and write image data bytes to the file*/
-      /*for ( i = 0; i < IDim_max; i++ )*/
-      forall i = 0 to IDim_max - 1 grouping 25 do
+  /* forall i = 0 to IDim_max - 1 grouping 25 do */
+      for ( i = 0; i < IDim_max; i++ )
        {
          float Cy;
          Cy = CyMin + i * PixelWidth;
          if (fabs(Cy)< PixelWidth/2)
             Cy=0.0;
-
-         forall j = 0 to IDim_max - 1 grouping 25 do {
-
-             mandelrow(i,j,Cy, &image_out[i][j]);
-       }
+        /* forall j = 0 to IDim_max - 1 grouping 25 do */
+        for ( j = 0; j < IDim_max; j++ )
+        {
+            mandelrow(i,j,Cy, &image_out[i][j]);
+        }
      }
   write_image_to_file();
 }
